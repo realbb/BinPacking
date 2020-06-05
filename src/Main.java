@@ -5,7 +5,7 @@ public class Main {
         int[] items = {7, 5, 6, 4, 2, 3, 7, 5};
         ArrayList<Bin> arr = new ArrayList<>();
 
-        Fit ff = new WorstFit();
+        Fit ff = new NextFit();
         for (int i=0; i<items.length; i++) {
             ff.fit(arr, new Item(items[i]));
         }
