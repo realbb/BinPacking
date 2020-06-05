@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+
+public class BestFit implements Fit {
+    @Override
+    public void fit(ArrayList<Bin> arr, Item item) {
+        ShowArr showarr= new ShowArr();
+        if (arr.isEmpty()) // 처음에 아무것도 없을 때
+        {
+            Bin b = new Bin();
+            b.update(item);
+            arr.add(b);
+            //showarr.showarr(arr);
+            return;
+        }
+
+        Bin biggestbin = new Bin();
+
+        for(int i=0; i<arr.size(); i++) //하나씩 비교하면서 아이템이 들어갈 수 있는지 확인
+        {
+            biggestbin = arr.get(i);
+            if (biggestbin.check(item))
+            {
+                biggestbin.update(item);
+                //showarr.showarr(arr);
+                return;
+            }
+        }
+
+        // 위가 실패해서 새롭게 통 생성
+        Bin b = new Bin();
+        b.update(item);
+        arr.add(b);
+
+        // 현재 용량으로 배열 정리
+        Bin temp = new Bin();
+        for(int i=0 ; i<arr.size()-1 ; i++)
+        {
+            for(int j=0; j < arr.size()-1-i; j++)
+            {
+                if(arr.get(j).currentCapacity < arr.get(j+1).currentCapacity)
+                {
+                    temp = arr.get(j);
+                    arr.set(j,arr.get(j+1));
+                    arr.set(j+1,temp);
+                }
+            }
+        }
+        //showarr.showarr(arr);
+    }
+}

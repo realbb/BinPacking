@@ -5,13 +5,14 @@ public class Main {
         int[] items = {7, 5, 6, 4, 2, 3, 7, 5};
         ArrayList<Bin> arr = new ArrayList<>();
 
-        Fit ff = new NextFit();
+        Fit ff = new WorstFit();
         for (int i=0; i<items.length; i++) {
             ff.fit(arr, new Item(items[i]));
         }
 
         for (int i = 0; i < arr.size(); i++) {
-            System.out.println(arr.get(i));
+            System.out.println("통 "+(i+1)+"번:  "+arr.get(i));
         }
+        System.out.print("총 "+arr.size()+"개가 필요합니다.");
     }
 }
